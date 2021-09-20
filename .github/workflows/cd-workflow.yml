@@ -4,6 +4,7 @@ on:
   push:
     paths:
     - "**Dockerfile**"
+    - "README.md"
 
 jobs:
   build:
