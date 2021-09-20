@@ -58,11 +58,14 @@ jobs:
       with:
         name: webpack artifacts
         path: public
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }} 
+        registry: docker.pkg.github.com
+        
     - name: Build container image
       uses: docker/build-push-action@v2
       with:
-        username: ${{github.actor}}
-        password: ${{secrets.GITHUB_TOKEN}}
-        registry: docker.pkg.github.com
         tags: maime7s/github-actions-for-packages/tic-tac-toe
-        tag_with_sha: true
